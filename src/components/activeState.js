@@ -4,7 +4,7 @@ function chooseRandomState() {
   return Math.floor(Math.random() * 8) + 1;
 }
 
-const activeState = ({ noOfActiveStates }) => {
+const RandomactiveState = ({ noOfActiveStates }) => {
   const activeStates = [];
   while (activeStates.length < noOfActiveStates) {
     var randomState = chooseRandomState();
@@ -15,4 +15,4 @@ const activeState = ({ noOfActiveStates }) => {
   return activeStates;
 };
 
-export { activeState };
+export { RandomactiveState };
