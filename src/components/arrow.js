@@ -130,10 +130,10 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
           <Image
             className="absolute w-[50px] h-[21px] top-[303px] left-[215px] object-cover"
             alt="Arrow"
-            src="/Image/arrow52-1.svg"
+            src="/Image/arrow54.svg"
             width={0}
             height={0}
-            hidden={!activeArrows.includes(52)}
+            hidden={!activeArrows.includes(54)}
           />
           <Image
             className="absolute w-[58px] h-[18px] top-[308px] left-[110px] object-cover"
@@ -397,7 +397,7 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
             src="/Image/arrow-26.svg"
             width={0}
             height={0}
-            hidden={!activeArrows.includes(25)}
+            hidden={!activeArrows.includes(26)}
           />
           <Image
             className="absolute w-[246px] h-[97px] top-[127px] left-[63px] object-cover"

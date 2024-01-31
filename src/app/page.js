@@ -1,11 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import MyDrawingComponent from "@/components/arrow";
-import { activeState } from "@/components/activeState";
-import { activeArrow } from "@/components/activeArrows";
 import Cookie from "js-cookie";
 import { useRouter } from "next/navigation";
+import Navbar from "@/components/navbar";
 
 const MyPage = () => {
   const [noOfActiveStates, setNoOfActiveStates] = useState(0);
@@ -21,14 +19,25 @@ const MyPage = () => {
   };
   return (
     <div>
-      <div>
-        <form onSubmit={handleSubmit}>
+      <Navbar />
+      <div className="pt-[50px]">
+        <form
+          onSubmit={handleSubmit}
+          className=" border-[3px] flex justify-center items-center flex-col space-y-5"
+        >
+          <div>Submit Numbers Of States you want !</div>
           <input
             type="text"
             value={noOfActiveStates}
             onChange={handlechanges}
+            className="border-[3px] flex"
           />
-          <button type="submit">Submit</button>
+          <button
+            type="submit"
+            className="border-[2px] rounded-[10px] bg-blue-500 p-[10px]"
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>
