@@ -1,4 +1,4 @@
-## Final Year Project (Still under development)
+## (Still under development)
 
 First, run the development server:
 
