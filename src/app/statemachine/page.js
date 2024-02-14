@@ -4,6 +4,7 @@ import Cookie from "js-cookie";
 import MyDrawingComponent from "@components/arrow";
 import { activeArrow } from "@components/activeArrows";
 import { RandomactiveState } from "@components/activeState";
+import Table from "@/components/table";
 
 const StateMachine = () => {
   const noOfActiveStates = Cookie.get("noOfActiveStates");
@@ -38,6 +39,9 @@ const StateMachine = () => {
           activeStates={activeStates}
           activeArrows={activeArrowsComponent}
         />
+      </div>
+      <div>
+        <Table activeStates={activeStates} />
       </div>
     </div>
   );

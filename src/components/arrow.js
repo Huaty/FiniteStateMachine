@@ -1,7 +1,19 @@
 import react from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
+  const [displayCounts, setDisplayCounts] = useState({});
+
+  useEffect(() => {
+    const newDisplayCounts = {}; /// create a hashmap
+
+    for (let i = 0; i < activeStates.length; i++) {
+      newDisplayCounts[activeStates[i]] = i + 1;
+    }
+    setDisplayCounts(newDisplayCounts);
+  }, [activeStates]);
+
   return (
     <div className="bg-white flex flex-row justify-center w-full">
       <div className="bg-white w-[1512px] h-[982px]">
@@ -12,7 +24,12 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
             id="state1"
             hidden={!activeStates.includes(1)}
           >
-            <div className="flex absolute top-[10px] left-[20px]">1</div>
+            {activeStates.includes(1) && (
+              <div className="flex absolute top-[10px] left-[20px]">
+                {" "}
+                {displayCounts[1] || 0}
+              </div>
+            )}
           </div>
           {/* state 6 */}
           <div
@@ -20,7 +37,11 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
             id="state6"
             hidden={!activeStates.includes(6)}
           >
-            <div className="absolute top-[10px] left-[20px] ">6</div>
+            {activeStates.includes(6) && (
+              <div className="absolute top-[10px] left-[20px] ">
+                {displayCounts[6] || 0}
+              </div>
+            )}
           </div>
           {/* state 4 */}
 
@@ -30,7 +51,11 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
             hidden={!activeStates.includes(4)}
           >
             {" "}
-            <div className="absolute top-[10px] left-[20px] ">4</div>
+            {activeStates.includes(4) && (
+              <div className="absolute top-[10px] left-[20px] ">
+                {displayCounts[4] || 0}
+              </div>
+            )}
           </div>
           {/* state 5 */}
           <div
@@ -39,7 +64,11 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
             hidden={!activeStates.includes(5)}
           >
             {" "}
-            <div className="absolute top-[10px] left-[20px] ">5</div>
+            {activeStates.includes(5) && (
+              <div className="absolute top-[10px] left-[20px] ">
+                {displayCounts[5] || 0}
+              </div>
+            )}
           </div>
           {/* state 8 */}
           <div
@@ -48,7 +77,11 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
             hidden={!activeStates.includes(8)}
           >
             {" "}
-            <div className="absolute top-[10px] left-[20px] ">8</div>
+            {activeStates.includes(8) && (
+              <div className="absolute top-[10px] left-[20px] ">
+                {displayCounts[8] || 0}
+              </div>
+            )}
           </div>
           {/* state 7 */}
           <div
@@ -57,7 +90,12 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
             hidden={!activeStates.includes(7)}
           >
             {" "}
-            <div className="absolute top-[10px] left-[20px] ">7</div>
+            {activeStates.includes(7) && (
+              <div className="absolute top-[10px] left-[20px] ">
+                {" "}
+                {displayCounts[7] || 0}
+              </div>
+            )}
           </div>
           {/* state 3 */}
           <div
@@ -66,7 +104,12 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
             hidden={!activeStates.includes(3)}
           >
             {" "}
-            <div className="absolute top-[10px] left-[20px] ">3</div>
+            {activeStates.includes(3) && (
+              <div className="absolute top-[10px] left-[20px] ">
+                {" "}
+                {displayCounts[3] || 0}
+              </div>
+            )}
           </div>
           {/* state 2 */}
           <div
@@ -75,7 +118,11 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
             hidden={!activeStates.includes(2)}
           >
             {" "}
-            <div className="absolute top-[10px] left-[20px] ">2</div>
+            {activeStates.includes(2) && (
+              <div className="absolute top-[10px] left-[20px] ">
+                {displayCounts[2] || 0}
+              </div>
+            )}
           </div>
 
           {/* End of State */}
