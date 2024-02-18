@@ -1,18 +1,18 @@
 "use client";
-import react from "react";
+
 import Cookie from "js-cookie";
 import MyDrawingComponent from "@components/arrow";
 import { activeArrow } from "@components/activeArrows";
 import { RandomactiveState } from "@components/activeState";
 import Table from "@/components/table";
+import MealyPage from "@/components/mealyPage";
 
 const StateMachine = () => {
   const noOfActiveStates = Cookie.get("noOfActiveStates");
   var activeStates = RandomactiveState({ noOfActiveStates });
   var activeArrows = activeArrow({ activeStates });
   var activeArrowsComponent = activeArrows.flatMap((dict) => dict.arrows);
-  console.log(activeStates);
-  console.log(activeArrowsComponent);
+
   return (
     <div>
       <h1>State Machine</h1>
@@ -34,15 +34,10 @@ const StateMachine = () => {
           })}
         </ul>
       </div>
-      <div className="">
-        <MyDrawingComponent
-          activeStates={activeStates}
-          activeArrows={activeArrowsComponent}
-        />
-      </div>
-      <div>
-        <Table activeStates={activeStates} />
-      </div>
+      <MealyPage
+        activeStates={activeStates}
+        activeArrows={activeArrowsComponent}
+      />
     </div>
   );
 };

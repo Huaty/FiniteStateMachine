@@ -9,15 +9,15 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
     const newDisplayCounts = {}; /// create a hashmap
 
     for (let i = 0; i < activeStates.length; i++) {
-      newDisplayCounts[activeStates[i]] = i + 1;
+      newDisplayCounts[activeStates[i]] = i;
     }
     setDisplayCounts(newDisplayCounts);
   }, [activeStates]);
 
   return (
-    <div className="bg-white flex flex-row justify-center w-full">
-      <div className="bg-white w-[1512px] h-[982px]">
-        <div className="relative w-[387px] h-[363px] top-[128px] left-[563px]">
+    <div className="bg-white flex flex-col justify-center w-[100vw]">
+      <div className="bg-white w-[100vw] h-[80vh]">
+        <div className="relative top-[20vh] left-[40vw]">
           {/* state 1 */}
           <div
             className="top-[23px] left-[167px] absolute w-[48px] h-[46px] bg-[#d9d9d9] rounded-[24px/23px] border border-solid border-black"
