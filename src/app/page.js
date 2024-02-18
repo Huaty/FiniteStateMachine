@@ -7,7 +7,7 @@ import Navbar from "@/components/navbar";
 
 const MyPage = () => {
   const [noOfActiveStates, setNoOfActiveStates] = useState(0);
-  const Router = useRouter();
+  const router = useRouter();
   const handlechanges = (event) => {
     setNoOfActiveStates(event.target.value);
   };
@@ -15,7 +15,7 @@ const MyPage = () => {
     event.preventDefault();
     console.log(noOfActiveStates);
     Cookie.set("noOfActiveStates", noOfActiveStates);
-    Router.push("/statemachine");
+    router.push("/statemachine");
   };
   return (
     <div>
