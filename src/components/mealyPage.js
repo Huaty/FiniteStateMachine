@@ -1,37 +1,57 @@
 import MyDrawingComponent from "@components/arrow";
 import Table from "@/components/table";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const MealyPage = ({ activeStates, activeArrows }) => {
-  const [table, SetTable] = useState(new Map());
-  const table3or4 = [
-    ["00", { 0: "", 1: "" }],
-    ["01", { 0: "", 1: "" }],
-    ["10", { 0: "", 1: "" }],
-    ["11", { 0: "", 1: "" }],
-  ];
+  const [table, setTable] = useState([]);
+  const [newTable, setNewTable] = useState(new Map());
+  useEffect(() => {
+    let initialTable =
+      activeStates.length == 3 || activeStates.length == 4
+        ? [
+            ["00", { 0: "", 1: "" }],
+            ["01", { 0: "", 1: "" }],
+            ["10", { 0: "", 1: "" }],
+            ["11", { 0: "", 1: "" }],
+          ]
+        : [
+            ["000", { 0: "", 1: "" }],
+            ["001", { 0: "", 1: "" }],
+            ["010", { 0: "", 1: "" }],
+            ["011", { 0: "", 1: "" }],
+            ["100", { 0: "", 1: "" }],
+            ["101", { 0: "", 1: "" }],
+            ["110", { 0: "", 1: "" }],
+            ["111", { 0: "", 1: "" }],
+          ];
+    setTable(initialTable);
 
-  const newTable3or4 = new Map();
+    activeStates.forEach((index, i) => {
+      newTable.set(index, initialTable[i]);
+    });
 
-  activeStates.forEach((index, i) => {
-    newTable3or4.set(index, table3or4[i]);
-  });
+    activeArrows.forEach((arrow) => {
+      const source = Math.floor(arrow / 10); // Extract the source state
+      const target = arrow % 10; // Extract the target state
 
-  activeArrows.forEach((arrow) => {
-    const source = Math.floor(arrow / 10); // Extract the source state
-    const target = arrow % 10; // Extract the target state
-
-    if (newTable3or4.has(source)) {
-      const [code, relationships] = newTable3or4.get(source);
-      const index = relationships[0] === "" ? 0 : 1;
-      relationships[index] = String(target);
-      newTable3or4.set(source, [code, relationships]); // Update the Map
-    } else {
-      console.warn(`Source state ${source} not found in newTable3or4`);
-    }
-  });
+      if (newTable.has(source)) {
+        const [code, relationships] = newTable.get(source);
+        const index = relationships[0] === "" ? 0 : 1;
+        relationships[index] = String(target);
+        newTable.set(source, [code, relationships]); // Update the Map
+      } else {
+        console.warn(`Source state ${source} not found in newTable3or4`);
+      }
+    });
+  }, [activeStates]);
+  console.log(newTable);
 
   return (
     <div>
+      <div>
+        {/* {[...newTable].map(([state, value]) => {
+          return Object.entries(value).map(([input, _]) => <div>{input}</div>);
+        })} */}
+      </div>
       <div className="">
         <MyDrawingComponent
           activeStates={activeStates}
@@ -39,7 +59,7 @@ const MealyPage = ({ activeStates, activeArrows }) => {
         />
       </div>
       <div className="flex justify-center items-center">
-        <Table activeStates={activeStates} activeTable={newTable3or4} />
+        <Table activeStates={activeStates} activeTable={newTable} />
       </div>
     </div>
   );
