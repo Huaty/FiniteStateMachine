@@ -43,19 +43,24 @@ const MealyPage = ({ activeStates, activeArrows }) => {
       }
     });
   }, [activeStates]);
-  console.log(newTable);
 
   return (
     <div>
       <div>
-        {/* {[...newTable].map(([state, value]) => {
-          return Object.entries(value).map(([input, _]) => <div>{input}</div>);
-        })} */}
+        {[...newTable].map(([state, value]) => {
+          return Object.entries(value).map(([input, _]) => (
+            <div>
+              State:{state} going to {value[1][input]}
+              the input :{input}
+            </div>
+          ));
+        })}
       </div>
       <div className="">
         <MyDrawingComponent
           activeStates={activeStates}
           activeArrows={activeArrows}
+          activeTable={newTable}
         />
       </div>
       <div className="flex justify-center items-center">
