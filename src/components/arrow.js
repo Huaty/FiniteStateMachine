@@ -2,14 +2,20 @@ import react from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
+const MyDrawingComponent = ({
+  activeStates = [],
+  activeArrows = [],
+  activeTable,
+}) => {
   const [displayCounts, setDisplayCounts] = useState({});
 
   useEffect(() => {
     const newDisplayCounts = {}; /// create a hashmap
-
     for (let i = 0; i < activeStates.length; i++) {
-      newDisplayCounts[activeStates[i]] = i;
+      if (activeTable.has(activeStates[i])) {
+        const value = activeTable.get(activeStates[i]);
+        newDisplayCounts[activeStates[i]] = value[0];
+      }
     }
     setDisplayCounts(newDisplayCounts);
   }, [activeStates]);
@@ -25,7 +31,7 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
             hidden={!activeStates.includes(1)}
           >
             {activeStates.includes(1) && (
-              <div className="flex absolute top-[10px] left-[20px]">
+              <div className="flex absolute top-[10px] left-[10px]">
                 {" "}
                 {displayCounts[1] || 0}
               </div>
@@ -38,7 +44,7 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
             hidden={!activeStates.includes(6)}
           >
             {activeStates.includes(6) && (
-              <div className="absolute top-[10px] left-[20px] ">
+              <div className="absolute top-[10px] left-[10px] ">
                 {displayCounts[6] || 0}
               </div>
             )}
@@ -52,7 +58,7 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
           >
             {" "}
             {activeStates.includes(4) && (
-              <div className="absolute top-[10px] left-[20px] ">
+              <div className="absolute top-[10px] left-[10px] ">
                 {displayCounts[4] || 0}
               </div>
             )}
@@ -65,7 +71,7 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
           >
             {" "}
             {activeStates.includes(5) && (
-              <div className="absolute top-[10px] left-[20px] ">
+              <div className="absolute top-[10px] left-[10px] ">
                 {displayCounts[5] || 0}
               </div>
             )}
@@ -78,7 +84,7 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
           >
             {" "}
             {activeStates.includes(8) && (
-              <div className="absolute top-[10px] left-[20px] ">
+              <div className="absolute top-[10px] left-[10px] ">
                 {displayCounts[8] || 0}
               </div>
             )}
@@ -91,7 +97,7 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
           >
             {" "}
             {activeStates.includes(7) && (
-              <div className="absolute top-[10px] left-[20px] ">
+              <div className="absolute top-[10px] left-[10px] ">
                 {" "}
                 {displayCounts[7] || 0}
               </div>
@@ -105,7 +111,7 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
           >
             {" "}
             {activeStates.includes(3) && (
-              <div className="absolute top-[10px] left-[20px] ">
+              <div className="absolute top-[10px] left-[10px] ">
                 {" "}
                 {displayCounts[3] || 0}
               </div>
@@ -119,7 +125,7 @@ const MyDrawingComponent = ({ activeStates = [], activeArrows = [] }) => {
           >
             {" "}
             {activeStates.includes(2) && (
-              <div className="absolute top-[10px] left-[20px] ">
+              <div className="absolute top-[10px] left-[10px] ">
                 {displayCounts[2] || 0}
               </div>
             )}

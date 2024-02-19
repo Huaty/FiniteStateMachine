@@ -38,7 +38,6 @@ const Table = ({ activeStates, activeTable }) => {
           </thead>
           <tbody>
             {[...activeTable].map(([key, value]) => {
-              console.log(value[1]);
               const [q1, q2] = value[0];
               return Object.entries(value).map(([input, _]) => (
                 <tr key={`${key}-${input}`} className="text-center">
@@ -87,14 +86,13 @@ const Table = ({ activeStates, activeTable }) => {
               <th className="border-black border-[2px] text-center p-[5px]">
                 Q3+
               </th>
+              <th className="border-black border-[2px] text-center p-[5px]">
+                Output
+              </th>
             </tr>
           </thead>
           <tbody>
             {[...activeTable].map(([key, value]) => {
-              {
-                /* console.log(value[1][0]);
-              console.log(value[1][1]); */
-              }
               const [q1, q2, q3] = value[0];
               return Object.entries(value).map(([input, _]) => (
                 <tr key={`${key}-${input}`} className="text-center">
@@ -117,6 +115,7 @@ const Table = ({ activeStates, activeTable }) => {
                       ? activeTable.get(parseInt(value[1][input]))[0][2]
                       : "No"}
                   </td>
+                  <td className="border-black border-[2px]">{input}</td>
                 </tr>
               ));
             })}
