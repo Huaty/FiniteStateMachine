@@ -1,4 +1,5 @@
 import MyDrawingComponent from "@components/arrow";
+import MyDrawingComponents from "@components/test";
 import Table from "@/components/table";
 import { useState, useEffect } from "react";
 const MealyPage = ({ activeStates, activeArrows }) => {
@@ -57,7 +58,7 @@ const MealyPage = ({ activeStates, activeArrows }) => {
         })}
       </div>
       <div className="">
-        <MyDrawingComponent
+        <MyDrawingComponents
           activeStates={activeStates}
           activeArrows={activeArrows}
           activeTable={newTable}

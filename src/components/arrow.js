@@ -204,6 +204,7 @@ const MyDrawingComponent = ({
             height={0}
             hidden={!activeArrows.includes(67)}
           />
+
           <Image
             className="absolute w-[7px] h-[150px] top-[124px] left-[83px] object-cover"
             alt="Arrow"
@@ -228,6 +229,12 @@ const MyDrawingComponent = ({
             height={0}
             hidden={!activeArrows.includes(62)}
           />
+          <div
+            className="absolute w-[220px] h-[151px] top-[123px] left-[83px] object-cover "
+            hidden={!activeArrows.includes(62)}
+          >
+            1/0
+          </div>
           <Image
             className="absolute w-[233px] h-[60px] top-[212px] left-[84px] object-cover"
             alt="Arrow"
@@ -572,6 +579,12 @@ const MyDrawingComponent = ({
             height={0}
             hidden={!activeArrows.includes(41)}
           />
+          <div
+            hidden={!activeArrows.includes(42)}
+            className="absolute w-[21px] top-[250px] left-[270px] [font-family:'Inter-Regular',Helvetica] font-normal text-black text-[12px] tracking-[0] leading-[normal]"
+          >
+            0/1
+          </div>
           <Image
             className="absolute w-[31px] h-[151px] top-[123px] left-[274px] object-cover"
             alt="Arrow"
