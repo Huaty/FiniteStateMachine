@@ -1,13 +1,18 @@
-import { useRouter } from "next/router";
+import React from "react";
 
-function PostPage() {
-  const router = useRouter();
-  const { title, content, id } = router.query;
+import Image from "next/image";
+
+import MyDrawingComponents from "@/components/test";
+
+const MyDrawingComponent = ({}) => {
   return (
-    <div>
-      <h1>{title}</h1> {/* Access the title */}
-      <p>{content}</p> {/* Access the content */}
-      <div>Post ID: {id}</div> {/* Access the id */}
+    <div className="">
+      <div className="pb-[10px]">Hello</div>
+      <div>
+        <MyDrawingComponents />
+      </div>
     </div>
   );
-}
+};
+
+export default MyDrawingComponent;

@@ -20,6 +20,26 @@ const MyPage = () => {
   return (
     <div>
       <Navbar />
+      {/* <div className="pt-[50px]">
+        <form
+          onSubmit={handleSubmit}
+          className=" border-[3px] flex justify-center items-center flex-col space-y-5"
+        >
+          <div>Submit Numbers Of States you want !</div>
+          <input
+            type="text"
+            value={noOfActiveStates}
+            onChange={handlechanges}
+            className="border-[3px] flex"
+          />
+          <button
+            type="submit"
+            className="border-[2px] rounded-[10px] bg-blue-500 p-[10px]"
+          >
+            Submit
+          </button>
+        </form>
+      </div> */}
       <div className="pt-[50px]">
         <form
           onSubmit={handleSubmit}
@@ -40,6 +60,7 @@ const MyPage = () => {
           </button>
         </form>
       </div>
+      <button onClick={() => router.push("/test")}>Click Here</button>
     </div>
   );
 };
