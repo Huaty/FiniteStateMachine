@@ -1,10 +1,10 @@
 "use client";
 
 import Cookie from "js-cookie";
-import MyDrawingComponent from "@components/arrow";
+
 import { activeArrow } from "@components/activeArrows";
 import { RandomactiveState } from "@components/activeState";
-import Table from "@/components/table";
+
 import MealyPage from "@/components/mealyPage";
 
 const StateMachine = () => {
