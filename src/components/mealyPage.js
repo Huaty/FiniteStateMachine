@@ -1,5 +1,4 @@
-import MyDrawingComponent from "@components/arrow";
-import MyDrawingComponents from "@components/test";
+import MyDrawingComponents from "@/components/arrow";
 import Table from "@/components/table";
 import { useState, useEffect } from "react";
 const MealyPage = ({ activeStates, activeArrows }) => {
@@ -25,11 +24,9 @@ const MealyPage = ({ activeStates, activeArrows }) => {
             ["111", { 0: "", 1: "" }],
           ];
     setTable(initialTable);
-
     activeStates.forEach((index, i) => {
       newTable.set(index, initialTable[i]);
     });
-
     activeArrows.forEach((arrow) => {
       const source = Math.floor(arrow / 10); // Extract the source state
       const target = arrow % 10; // Extract the target state
@@ -44,6 +41,9 @@ const MealyPage = ({ activeStates, activeArrows }) => {
       }
     });
   }, [activeStates]);
+  const randomValues = Array.from({ length: activeArrows.length }, () =>
+    Math.round(Math.random())
+  );
 
   return (
     <div>
@@ -62,10 +62,15 @@ const MealyPage = ({ activeStates, activeArrows }) => {
           activeStates={activeStates}
           activeArrows={activeArrows}
           activeTable={newTable}
+          randomValues={randomValues}
         />
       </div>
       <div className="flex justify-center items-center">
-        <Table activeStates={activeStates} activeTable={newTable} />
+        <Table
+          activeStates={activeStates}
+          activeTable={newTable}
+          randomValues={randomValues}
+        />
       </div>
     </div>
   );

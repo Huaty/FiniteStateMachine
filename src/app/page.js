@@ -1,66 +1,39 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Cookie from "js-cookie";
+import Image from "next/image";
+
 import { useRouter } from "next/navigation";
-import Navbar from "@/components/navbar";
 
 const MyPage = () => {
-  const [noOfActiveStates, setNoOfActiveStates] = useState(0);
   const router = useRouter();
-  const handlechanges = (event) => {
-    setNoOfActiveStates(event.target.value);
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(noOfActiveStates);
-    Cookie.set("noOfActiveStates", noOfActiveStates);
-    router.push("/statemachine");
-  };
   return (
-    <div>
-      <Navbar />
-      {/* <div className="pt-[50px]">
-        <form
-          onSubmit={handleSubmit}
-          className=" border-[3px] flex justify-center items-center flex-col space-y-5"
-        >
-          <div>Submit Numbers Of States you want !</div>
-          <input
-            type="text"
-            value={noOfActiveStates}
-            onChange={handlechanges}
-            className="border-[3px] flex"
-          />
-          <button
-            type="submit"
-            className="border-[2px] rounded-[10px] bg-blue-500 p-[10px]"
-          >
-            Submit
-          </button>
-        </form>
-      </div> */}
-      <div className="pt-[50px]">
-        <form
-          onSubmit={handleSubmit}
-          className=" border-[3px] flex justify-center items-center flex-col space-y-5"
-        >
-          <div>Submit Numbers Of States you want !</div>
-          <input
-            type="text"
-            value={noOfActiveStates}
-            onChange={handlechanges}
-            className="border-[3px] flex"
-          />
-          <button
-            type="submit"
-            className="border-[2px] rounded-[10px] bg-blue-500 p-[10px]"
-          >
-            Submit
-          </button>
-        </form>
+    <div className="relative h-[100vh]">
+      <div className=" relative z-10 flex flex-row justify-between pl-[10vw] pr-[10vw] pt-[20px]">
+        <Image src="/logo.png" width={100} height={100} />
+        <div className="flex justify-center items-center">
+          <ol className="flex flex-row space-x-[10px]">
+            <li>
+              <button onClick={() => router.push("/Afterlogin")}>
+                MealyStateMachine
+              </button>
+            </li>
+            <li>
+              <button onClick={() => router.push("/LoginIn")}>Login</button>
+            </li>
+          </ol>
+        </div>
       </div>
-      <button onClick={() => router.push("/test")}>Click Here</button>
+      <div className="absolute inset-0 bg-black opacity-70 z-[-1]">
+        <Image
+          src="/landingImage.jpg"
+          alt="student discuss together"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+          className="z-[-1] "
+        />
+      </div>
     </div>
   );
 };
