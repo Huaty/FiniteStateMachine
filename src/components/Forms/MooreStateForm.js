@@ -3,23 +3,47 @@ import { useRouter } from "next/navigation";
 
 const MooreStateForm = () => {
   const [noOfActiveStates, setNoOfActiveStates] = useState("");
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const MoorehandleSubmit = (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
+
+    // Validate the input
+    if (
+      isNaN(noOfActiveStates) ||
+      noOfActiveStates < 3 ||
+      noOfActiveStates > 8
+    ) {
+      setError("Please enter a number between 3 and 8.");
+      return;
+    }
+
     // Navigate to the mooreMachine page with the number of states as a query parameter
     router.push(`/mooreMachine/${noOfActiveStates}`);
   };
 
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setNoOfActiveStates(value);
+
+    // Validate the input on change
+    if (isNaN(value) || value < 3 || value > 8) {
+      setError("Please enter a number between 3 and 8.");
+    } else {
+      setError("");
+    }
+  };
+
   return (
-    <div className="max-w-md mx-auto bg-white shadow-md rounded-lg p-6 mt-10">
-      <form onSubmit={MoorehandleSubmit} className="space-y-4">
+    <div className="max-w-lg mx-auto bg-white shadow-md rounded-lg p-8 mt-10">
+      <form onSubmit={MoorehandleSubmit} className="space-y-6">
         <div>
           <label
             htmlFor="noOfActiveStates"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-lg font-medium text-red-600"
           >
-            Number of States:
+            Number of States in Moore State Machine:
           </label>
           <input
             type="number"
@@ -27,18 +51,23 @@ const MooreStateForm = () => {
             name="noOfActiveStates"
             required
             max="8"
-            min="1" // Assuming the minimum number of states is 1
+            min="3"
             value={noOfActiveStates}
-            onChange={(e) => setNoOfActiveStates(e.target.value)}
-            className="no-arrows mt-1 block w-full p-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+            onChange={handleInputChange}
+            className={`no-arrows mt-2 block w-full p-3 text-lg border-2 border-black focus:outline-none focus:ring-red-500 focus:border-red-500 rounded-md ${
+              error ? "border-red-500" : ""
+            }`}
           />
+          {error && <p className="text-red-500 text-base mt-2">{error}</p>}
         </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-200"
-        >
-          Submit
-        </button>
+        <div className="text-center">
+          <button
+            type="submit"
+            className="bg-red-500 text-white text-lg px-6 py-3 rounded-md hover:bg-red-600 transition duration-200"
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

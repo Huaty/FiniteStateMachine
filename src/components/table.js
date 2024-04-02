@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-const Table = ({ activeStates, activeTable, randomValues }) => {
+const Table = ({ activeStates, activeTable, output }) => {
   const [table, setTable] = useState(true);
   const [correctQ1, setCorrectQ1] = useState({});
   const [correctOutput, setOutput] = useState({});
 
   useEffect(() => {
-    if (activeStates.length === 3 || activeStates.length === 4) {
+    if (activeStates.length <= 4) {
       setTable(true);
     } else {
       setTable(false);
@@ -18,7 +18,7 @@ const Table = ({ activeStates, activeTable, randomValues }) => {
     const outputAnswer = e.target.value;
     const outputElement = document.getElementById(`output-${index}`);
     if (outputElement) {
-      if (outputAnswer != randomValues[index]) {
+      if (outputAnswer != output[index]) {
         // If the answer is incorrect, set the background color to red
         outputElement.style.backgroundColor = "red";
       } else {
@@ -73,8 +73,6 @@ const Table = ({ activeStates, activeTable, randomValues }) => {
       );
     }
   };
-
-  console.log(randomValues);
 
   return (
     <div>
@@ -165,7 +163,7 @@ const Table = ({ activeStates, activeTable, randomValues }) => {
           </tbody>
         </table>
       )}
-      {table && (
+      {/* {table && (
         <table className="border-black border-[2px]">
           <thead>
             <tr className="border-black border-[2px]">
@@ -212,14 +210,14 @@ const Table = ({ activeStates, activeTable, randomValues }) => {
                       : "No"}
                   </td>
                   <td className="border-black border-[2px] output">
-                    {randomValues[(index * 2 + subIndex) % randomValues.length]}
+                    {output[(index * 2 + subIndex) % output.length]}
                   </td>
                 </tr>
               ));
             })}
           </tbody>
         </table>
-      )}
+      )} */}
       {!table && (
         <table className="border-2 border-black w-full shadow-lg mt-4 bg-white">
           <thead className="bg-blue-500">
@@ -292,7 +290,7 @@ const Table = ({ activeStates, activeTable, randomValues }) => {
                   <td className="border-2 border-black p-1 Q1+">
                     <input
                       type="number"
-                      id={`1-${index}${subIndex}`}
+                      id={`2-${index}${subIndex}`}
                       onChange={(e) =>
                         handle2Q(
                           e,
@@ -320,7 +318,7 @@ const Table = ({ activeStates, activeTable, randomValues }) => {
           </tbody>
         </table>
       )}
-      {!table && (
+      {/* {!table && (
         <table className="border-2 border-black w-full shadow-lg mt-4 bg-white">
           <thead className="bg-blue-500">
             <tr className="border-2 border-black">
@@ -375,14 +373,14 @@ const Table = ({ activeStates, activeTable, randomValues }) => {
                       : "No"}
                   </td>
                   <td className="border-black border-[2px] output">
-                    {randomValues[(index * 2 + subIndex) % randomValues.length]}
+                    {output[(index * 2 + subIndex) % output.length]}
                   </td>
                 </tr>
               ));
             })}
           </tbody>
         </table>
-      )}
+      )} */}
     </div>
   );
 };

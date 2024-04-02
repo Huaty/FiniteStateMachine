@@ -2,38 +2,50 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Navbar from "@components/navbar";
+import { poppinsFont, koulenFont } from "@/asset/font";
 
 import { useRouter } from "next/navigation";
 
 const MyPage = () => {
   const router = useRouter();
   return (
-    <div className="relative h-[100vh]">
-      <div className=" relative z-10 flex flex-row justify-between pl-[10vw] pr-[10vw] pt-[20px]">
-        <Image src="/logo.png" width={100} height={100} />
-        <div className="flex justify-center items-center">
-          <ol className="flex flex-row space-x-[10px]">
-            <li>
-              <button onClick={() => router.push("/Afterlogin")}>
-                MealyStateMachine
-              </button>
-            </li>
-            <li>
-              <button onClick={() => router.push("/LoginIn")}>Login</button>
-            </li>
-          </ol>
-        </div>
-      </div>
-      <div className="absolute inset-0 bg-black opacity-70 z-[-1]">
+    <div className="">
+      <Navbar />
+      <div className="relative h-screen">
         <Image
           src="/landingImage.jpg"
           alt="student discuss together"
           layout="fill"
           objectFit="cover"
           objectPosition="center"
-          className="z-[-1] "
+          className="z-[-1]"
         />
+        <div className="absolute inset-0 bg-black opacity-30"></div>
+        <div className="absolute inset-0 container mx-auto flex items-center justify-center">
+          <div className="text-white text-center">
+            <h1 className="text-5xl font-bold mb-4">
+              Learn Finite State Machine With Us!
+            </h1>
+            <p className={`text-lg mb-8 ${poppinsFont.className}`}>
+              Discover the fascinating world of finite state machines with our
+              interactive learning platform.
+            </p>
+            <button
+              className="bg-red-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-red-700"
+              onClick={() => router.push("/LoginIn")}
+            >
+              Get Started
+            </button>
+          </div>
+        </div>
       </div>
+      <footer className="bg-gray-800 text-white py-4 px-6">
+        <div className="container mx-auto text-center">
+          &copy; 2023 Nanyang Technological University, Singapore. All rights
+          reserved.
+        </div>
+      </footer>
     </div>
   );
 };

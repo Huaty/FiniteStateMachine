@@ -4,28 +4,16 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const MyDrawingComponents = ({
-  activeArrows = [],
-  activeStates = [],
+  activeArrows,
+  activeStates,
   activeTable,
-  randomValues,
+  output,
 }) => {
   const [arrowMap, setArrowMap] = useState(new Map());
-
-  useEffect(() => {
-    const newArrowMap = new Map();
-    activeArrows.forEach((arrow, index) => {
-      console.log(index);
-      const value = `${index % 2}/${randomValues[index]}`;
-      newArrowMap.set(arrow, value);
-    });
-    setArrowMap(newArrowMap);
-  }, [activeArrows, randomValues]);
-
   const [displayCounts, setDisplayCounts] = useState({});
-  const [table, setTable] = useState(new Map());
 
   useEffect(() => {
-    const newDisplayCounts = {}; /// create a hashmap
+    const newDisplayCounts = {};
     for (let i = 0; i < activeStates.length; i++) {
       if (activeTable.has(activeStates[i])) {
         const value = activeTable.get(activeStates[i]);
@@ -33,20 +21,29 @@ const MyDrawingComponents = ({
       }
     }
     setDisplayCounts(newDisplayCounts);
+  }, [activeStates, activeTable]);
 
-    // const test = activeTable.get(activeStates[0]);
-    // if (test !== undefined && test[1] !== undefined) {
-    //   Object.entries(test[1]).forEach(([key, value]) => {
-    //     console.log(`Key: ${key}, Value: ${value}`);
-    //   });
-    // } else {
-    //   console.log("Test or test[1] is undefined");
-    // }
-    setTable(activeTable);
-  }, [activeStates]);
+  useEffect(() => {
+    const newArrowMap = new Map();
+    activeArrows.forEach((arrow, index) => {
+      const value = `${index % 2}/${output[index]}`;
+      newArrowMap.set(arrow, value);
+    });
+    setArrowMap(newArrowMap);
+  }, [activeArrows, output]);
+
+  useEffect(() => {
+    console.log("activeStates in MyDrawingComponents:", activeStates);
+    console.log("activeTable in MyDrawingComponents:", activeTable);
+    // ...
+  }, [activeStates, activeTable]);
+
+  useEffect(() => {
+    console.log(displayCounts);
+  }, [displayCounts]);
 
   return (
-    <div className="w-[100vw] h-[40vh] pb-[80vh]">
+    <div className="w-[100vw] h-[40vh] mb-[25vh]">
       <div className="relative top-[5vw] left-[36vw]">
         <div className="absolute w-[540px] h-[511px] top-0 left-0">
           <div
@@ -61,6 +58,7 @@ const MyDrawingComponents = ({
               </div>
             )}
           </div>
+
           <div
             id="state6"
             hidden={!activeStates.includes(6)}
@@ -84,6 +82,7 @@ const MyDrawingComponents = ({
               </div>
             )}
           </div>
+
           <div
             id="state5"
             hidden={!activeStates.includes(5)}
@@ -95,6 +94,7 @@ const MyDrawingComponents = ({
               </div>
             )}
           </div>
+
           <div
             id="state8"
             hidden={!activeStates.includes(8)}
@@ -106,6 +106,7 @@ const MyDrawingComponents = ({
               </div>
             )}
           </div>
+
           <div
             id="state7"
             hidden={!activeStates.includes(7)}
@@ -117,6 +118,7 @@ const MyDrawingComponents = ({
               </div>
             )}
           </div>
+
           <div
             id="state3"
             hidden={!activeStates.includes(3)}
@@ -128,6 +130,7 @@ const MyDrawingComponents = ({
               </div>
             )}
           </div>
+
           <div
             id="state2"
             hidden={!activeStates.includes(2)}
@@ -139,6 +142,7 @@ const MyDrawingComponents = ({
               </div>
             )}
           </div>
+
           <Image
             className="absolute w-[98px] h-[27px] top-[443px] left-[138px] object-cover"
             alt="Arrow"
@@ -616,6 +620,7 @@ const MyDrawingComponents = ({
               />
             </div>
           </div>
+
           <div className="absolute w-[43px] h-[41px] top-[279px] left-[490px] rotate-[-53.91deg]">
             <div className="relative w-[56px] h-[46px] left-[-6px]">
               <Image
@@ -636,6 +641,7 @@ const MyDrawingComponents = ({
               />
             </div>
           </div>
+
           <div className="absolute w-[43px] h-[41px] top-[417px] left-[406px] rotate-[-19.28deg]">
             <div className="relative w-[52px] h-[50px] top-[-7px] left-[-4px]">
               <Image
@@ -656,6 +662,7 @@ const MyDrawingComponents = ({
               />
             </div>
           </div>
+
           <div className="absolute w-[43px] h-[41px] top-[470px] left-[266px] rotate-[-0.38deg]">
             <div className="relative w-[40px] h-[41px] left-[2px]">
               <Image
@@ -676,6 +683,7 @@ const MyDrawingComponents = ({
               />
             </div>
           </div>
+
           <div className="absolute w-[43px] h-[41px] top-[426px] left-[88px] rotate-[58.11deg]">
             <div className="relative w-[57px] h-[52px] top-[-7px] left-[-7px]">
               <Image
@@ -696,6 +704,7 @@ const MyDrawingComponents = ({
               />
             </div>
           </div>
+
           <div className="absolute w-[43px] h-[41px] top-[285px] left-[3px] rotate-[103.45deg]">
             <div className="relative w-[46px] h-[43px] -top-px -left-px">
               <Image
@@ -716,6 +725,7 @@ const MyDrawingComponents = ({
               />
             </div>
           </div>
+
           <div className="absolute w-[43px] h-[41px] top-[128px] left-[42px] rotate-[120.17deg]">
             <div className="relative w-[54px] h-[46px] left-[-5px]">
               <Image
@@ -743,6 +753,7 @@ const MyDrawingComponents = ({
           >
             {activeArrows.includes(58) ? arrowMap.get(58) : ""}
           </div>
+
           <div
             hidden={!activeArrows.includes(56)}
             className="absolute w-[21px] top-[446px] left-[205px] [font-family:'Inter',Helvetica] font-normal text-black text-[12px] tracking-[0] leading-[normal] whitespace-nowrap"
