@@ -1,41 +1,47 @@
-import react from "react";
-import logo from "@public/logo.png";
+"use client";
+import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { koulenFont } from "@/asset/font";
 import Link from "next/link";
-
-const navbar = () => {
-  const links = [
+const Navbar = () => {
+  const router = useRouter();
+  const navigation = [
     {
-      name: "Home",
-      href: "/statemachine",
+      title: "Contact Us",
+      nav: "https://www.ntu.edu.sg/about-us/contact-us",
     },
     {
-      name: "State Machine",
-      href: "/statemachine",
+      title: "About Us",
+      nav: "/aboutus",
     },
     {
-      name: "About Us",
-      href: "/aboutus",
+      title: "Login",
+      nav: "LoginIn",
     },
   ];
   return (
-    <div className="flex flex- justify-between items-center pl-[10rem] pr-[7rem]">
-      <div className="w-[5vw]">
-        <Image
-          src={logo}
-          alt="NTU Logo"
-          width={100}
-          height={100}
-          layout="responsive"
-        />
+    <div className="flex flex-col space-y-5 items-center pl-[10vw] pr-[10vw] pt-[3vh] pb-[2vh] ">
+      <div className="w-[17vw]">
+        <Link href="/">
+          <Image
+            src={"/logo.png"}
+            width={300}
+            height={300}
+            layout="responsive"
+          />
+        </Link>
       </div>
       <div>
-        <ol className="flex flex-row space-x-2 ">
-          {links.map((variable, index) => (
-            <li>
-              <a href={variable.href} key={index}>
-                {variable.name}
-              </a>
+        <ol className="flex flex-row  space-x-[10vw]">
+          {navigation.map((item, index) => (
+            <li key={index} className="">
+              <button
+                onClick={() => router.push(item.nav)}
+                className={`${koulenFont.className} text-[30px]  px-6 py-2 rounded-full hover:bg-red-600 transition duration-300`}
+              >
+                {item.title}
+              </button>
             </li>
           ))}
         </ol>
@@ -43,5 +49,4 @@ const navbar = () => {
     </div>
   );
 };
-
-export default navbar;
+export default Navbar;

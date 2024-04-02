@@ -21,7 +21,7 @@ export default function MooreStatemachine({
   const [displayCounts, setDisplayCounts] = useState({});
   const [table, setTable] = useState(new Map());
   const [DisplayMooreOutput, setDisplayMooreOutput] = useState({});
-  console.log(activeStates);
+
   useEffect(() => {
     const newDisplayCounts = {}; // create a hashmap
     for (let i = 0; i < activeStates.length; i++) {
@@ -42,16 +42,13 @@ export default function MooreStatemachine({
     setTable(activeTable);
   }, [activeStates, activeTable, randomValues]); // Ensure all dependencies are listed
 
-  useEffect(() => {
-    console.log(DisplayMooreOutput); // This will log whenever DisplayMooreOutput changes.
-  }, [DisplayMooreOutput]);
   return (
     <div className="flex flex-col w-[1512px] h-[544px] items-center justify-center gap-[10px] px-[443px] py-[11px] relative">
       <div className="relative w-[700.02px] h-[511px] mr-[-117.01px]">
         <div className="relative w-[540px] h-[511px]">
           <div className="absolute w-[540px] h-[511px] top-0 left-0">
             <div
-              className="top-[32px] left-[233px] absolute w-[67px] h-[65px] bg-[#d9d9d9] rounded-[33.52px/32.34px] border border-solid border-black hover:bg-green-500"
+              className="top-[32px] left-[233px] absolute w-[67px] h-[65px] bg-[#d9d9d9] rounded-[33.52px/32.34px] border border-solid border-black"
               hidden={!activeStates.includes(1)}
               id="1-moore"
             >

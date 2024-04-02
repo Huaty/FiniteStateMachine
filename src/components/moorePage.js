@@ -42,7 +42,7 @@ const MoorePage = ({ activeStates, activeArrows }) => {
         console.warn(`Source state ${source} not found in newTable3or4`);
       }
     });
-  }, [activeStates]);
+  }, [activeStates, activeArrows]);
 
   useEffect(() => {
     let newRandomValues = [];
@@ -71,7 +71,7 @@ const MoorePage = ({ activeStates, activeArrows }) => {
         <Table
           activeStates={activeStates}
           activeTable={newTable}
-          randomValues={randomValues}
+          output={randomValues}
         />
       </div>
     </div>
