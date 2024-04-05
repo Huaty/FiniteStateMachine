@@ -1,5 +1,4 @@
 /node_modules
 /.next
-
-
 /server/node_modules
+/src/firebase/.env
