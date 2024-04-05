@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Cookies from "js-cookie";
-
+import { projectAuth } from "@/firebase/config"; // Adjust the path as necessary
 const AfterLoginNavBar = () => {
   const router = useRouter();
 
@@ -21,11 +21,20 @@ const AfterLoginNavBar = () => {
     router.push("/Afterlogin");
   };
   const handleLogout = () => {
-    // Remove the session token cookie
-    Cookies.remove("sessionToken");
+    try {
+      // Use the signOut method from Firebase auth
+      projectAuth.signOut();
 
-    // Redirect to the login page or update the UI as needed
-    router.push("/LoginIn");
+      // Sign-out successful: Remove the session token cookie
+      Cookies.remove("sessionToken");
+
+      // Redirect to the login page or update the UI as needed
+      router.push("/LoginIn"); // Ensure the path is correct; it was "/LoginIn" in your snippet
+    } catch (error) {
+      // Handle any errors that occur during sign-out
+      console.error("Logout error:", error);
+      // Optionally, set an error state here to inform the user
+    }
   };
 
   return (

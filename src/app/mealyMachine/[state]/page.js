@@ -16,7 +16,6 @@ const StateMachine = ({ params }) => {
     var newActiveArrowsComponent = activeArrows.flatMap((dict) => dict.arrows);
     setActiveStates(newActiveStates);
     setActiveArrowsComponent(newActiveArrowsComponent);
-    console.log("rerender parent");
   }, [params.state]);
 
   return (
